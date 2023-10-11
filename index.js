@@ -7,11 +7,15 @@ const token = process.env.TOKEN;
 const schedule = '*/30 * * * *';
 
 async function updateIp() {
-    const response = await axios.get(`https://www.duckdns.org/update?domains=${domain}&token=${token}&verbose=true&ip=`);
-    const status = response.status;
-    const state = response.data.split('\n')[3]; //UPDATED or NOCHANGE
+    try {
+        const response = await axios.get(`https://www.duckdns.org/update?domains=${domain}&token=${token}&verbose=true&ip=`);
+        const status = response.status;
+        const state = response.data.split('\n')[3]; //UPDATED or NOCHANGE
 
-    console.log(new Date().toLocaleString(), `| ${status} | ${state}`);
+        console.log(new Date().toLocaleString(), `| ${status} | ${state}`);
+    } catch (e) {
+        console.log("An error has occured.", err);
+    }
 }
 
 console.log("Starting job...")
