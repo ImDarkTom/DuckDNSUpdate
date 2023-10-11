@@ -14,7 +14,7 @@ async function updateIp() {
 
         console.log(new Date().toLocaleString(), `| ${status} | ${state}`);
     } catch (e) {
-        console.log("An error has occured.", err);
+        console.log("An error has occured.", e);
     }
 }
 
